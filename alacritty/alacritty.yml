@@ -1,0 +1,78 @@
+# set default shell
+shell:
+  program: "C:\\Games\\cygwin64\\bin\\fish.exe --login"
+  #program: "C:\\Games\\cygwin64\\bin\\zsh.exe --login"
+
+font:
+  size: 11.5
+  normal:
+    family: CaskaydiaCove NF
+    style: Regular
+# show bold, italic, bold_italic as regular
+  bold:
+    family: CaskaydiaCove NF
+    style: Regular
+  italic:
+    family: CaskaydiaCove NF
+    style: Regular
+  bold_italic:
+    family: CaskaydiaCove NF
+    style: Regular
+
+# start alacritty in specific size and position
+window:
+  dimensions:
+    columns: 158
+    lines: 8
+  position:
+    x: 340
+    y: 854
+
+# my color scheme
+colors:
+  primary:
+    background: '0x1e1e1e'
+    foreground: '0xb9b9b9'
+  normal:
+    black:   '0x1e1e1e'
+    red:     '0xff6464'
+    green:   '0x2dc87d'
+    yellow:  '0xffb932'
+    blue:    '0x6464e1'
+    magenta: '0xd27dd2'
+    cyan:    '0x78aadc'
+    white:   '0xb9b9b9'
+  bright:
+    black:   '0x5a5a5a'
+    red:     '0xff6464'
+    green:   '0x2dc87d'
+    yellow:  '0xffb932'
+    blue:    '0x6464e1'
+    magenta: '0xd27dd2'
+    cyan:    '0x78aadc'
+    white:   '0xb9b9b9'
+
+cursor:
+  style: Beam
+  #   - ▇ Block - _ Underline - | Beam
+  thickness: 0.25
+
+key_bindings:
+# ctrl+v for paste
+  - { key: V,        mods: Control,           action: Paste            }
+# ctrl+shift+c copy
+  - { key: C,        mods: Control|Shift,           action: Copy             }
+
+mouse_bindings:
+  #   - Right   - Left   - Middle
+  - { mouse: Right, action: PasteSelection }
+
+# enable copying of web page address
+selection:
+  save_to_clipboard: true
+  semantic_escape_chars: ",│`|\"' ()[]{}<>\t"
+
+# disable opening of web pages in browser
+mouse:
+  url:
+    launcher: None
