@@ -2,22 +2,22 @@
 shell:
   #program: "C:\\Games\\msys2\\usr\\bin\\zsh.exe --login"
   #program: "C:\\Games\\cygwin64\\bin\\fish.exe --login"
-  program: "C:\\Games\\cygwin64\\bin\\zsh.exe --login"
+  program: "/bin/zsh"
 
 font:
   size: 11
   normal:
-    family: CaskaydiaCove NF
+    family: CaskaydiaCove Nerd Font
     style: Regular
 # show bold, italic, bold_italic as regular
   bold:
-    family: CaskaydiaCove NF
+    family: CaskaydiaCove Nerd Font
     style: Regular
   italic:
-    family: CaskaydiaCove NF
+    family: CaskaydiaCove Nerd Font
     style: Regular
   bold_italic:
-    family: CaskaydiaCove NF
+    family: CaskaydiaCove Nerd Font
     style: Regular
   offset:
     x: 1
@@ -28,11 +28,11 @@ font:
 # start alacritty in specific size and position
 window:
   dimensions:
-    columns: 140
-    lines: 9
+    columns: 156
+    lines: 11
   position:
-    x: 340
-    y: 848
+    x: 0
+    y: 858
   #decorations: none
 
 # my color scheme
