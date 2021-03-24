@@ -28,21 +28,10 @@ export FZF_ALT_C_COMMAND="fd -t d --hidden"
 alias .='cd ../'
 alias ..='cd ../../'
 alias ...='cd ../../../'
-alias notor='youtube-dl.exe --proxy ""'
-alias gmic='/c/Games/gmic/gmic.exe'
-alias mpv='mpv.exe'
-alias mpvn='/c/Games/mpv.net/mpvnet.exe'
-alias mpvre='mpv.exe --vf=sub,lavfi="negate"'
+alias notor='youtube-dl --proxy ""'
 alias ari='aria2c'
 alias pari='aria2c --http-proxy="http://127.0.0.1:9080"'
 alias pcurl='curl -x socks5h://localhost:9050'
-#alias python2='/usr/bin/python2.7.exe'
-#alias python3='/usr/bin/python3.8.exe'
-alias lolcat='/usr/bin/lolcat'
-alias waifu='/c/games/waifu2x/waifu2x.exe'
-alias proxy64='/c/Games/proxychains/x64/proxychains.exe -f "C:\Games\proxychains\proxychains.conf"'
-
-
 
 
 function humanize_duration -d "Make a time interval human readable"
