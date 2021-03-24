@@ -7,7 +7,7 @@ return {
   disable_default_mouse_bindings = true,
   hide_tab_bar_if_only_one_tab = true,
   default_cursor_style = "SteadyBar",
-  color_scheme = "MaterialDarker", -- SpaceGray Eighties
+  color_scheme = "MaterialDarker", -- "SpaceGray Eighties"
   window_padding = {
     left = 6,
     right = 6,
