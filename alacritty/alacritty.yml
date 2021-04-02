@@ -1,7 +1,5 @@
 # set default shell
 shell:
-  #program: "C:\\Games\\msys2\\usr\\bin\\zsh.exe --login"
-  #program: "C:\\Games\\cygwin64\\bin\\fish.exe --login"
   program: "/bin/zsh"
 
 font:
