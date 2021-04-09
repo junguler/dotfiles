@@ -2,6 +2,10 @@ local wezterm = require 'wezterm';
 return {
   default_prog = {"/bin/zsh", "-l"},
   font_size = 11.0,
+  line_height = 0.9,
+  bold_brightens_ansi_colors = false,
+  check_for_updates = false,
+  show_update_window = false,
   window_close_confirmation = "NeverPrompt",
   disable_default_key_bindings = true,
   disable_default_mouse_bindings = true,
@@ -28,6 +32,7 @@ return {
   font_rules = {
     {
       italic = false,
+      bold = false,
       font = wezterm.font("Cascadia Code PL"),
     }
   },
@@ -44,3 +49,4 @@ return {
     },
   }
 }
+
