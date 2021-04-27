@@ -6,7 +6,7 @@
 #--proxy socks5://127.0.0.1:8580/
 
 # file download location
-# -o "D:\ClipGrab\%(title)s-%(id)s.%(ext)s"
+-o "/media/junguler/New Volume1/ClipGrab/%(title)s-%(id)s.%(ext)s"
 
 # force filename to ascii characters
 --restrict-filenames
