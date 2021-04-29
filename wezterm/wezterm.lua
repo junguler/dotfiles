@@ -6,6 +6,7 @@ return {
   bold_brightens_ansi_colors = false,
   check_for_updates = false,
   show_update_window = false,
+  pane_focus_follows_mouse = true,
   window_close_confirmation = "NeverPrompt",
   disable_default_key_bindings = true,
   disable_default_mouse_bindings = true,
@@ -33,7 +34,8 @@ return {
     {
       italic = false,
       bold = false,
-      font = wezterm.font("Cascadia Code PL"),
+      font = wezterm.font("Cascadia Mono PL"),
+      -- font = wezterm.font("Hack"),
     }
   },
   mouse_bindings = {
@@ -49,4 +51,3 @@ return {
     },
   }
 }
-
