@@ -72,7 +72,9 @@ export ZSH="/home/junguler/.oh-my-zsh"
 # Add wisely, as too many plugins slow down shell startup.
 #ohmyfish plugins
 
-PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M:%S} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33}%f 0ms %F{177}%F{127} %f%k"; else echo "  %D{%H:%M:%S}  $(shrink_path -f)  "; fi) '
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+
+PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M:%S} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33}%f 0ms %F{177}%F{127} %f%k"; else echo "  %D{%H:%M:%S}  $(shrink_path -f)  "; fi) '
 
 # function for showing elapsed time in PROMPT
 function preexec() {
@@ -95,7 +97,7 @@ function precmd() {
     else elapsed=${ms}ms
     fi
 
-	PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M:%S} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33} %f${elapsed} %F{177}%F{127} %f%k "; else echo "  %D{%H:%M:%S}  $(shrink_path -f)  ${elapsed}   "; fi)'
+	PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M:%S} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33} %f${elapsed} %F{177}%F{127} %f%k "; else echo "  %D{%H:%M:%S}  $(shrink_path -f)  ${elapsed}   "; fi)'
     unset timer
   fi
 }
@@ -108,6 +110,9 @@ alias ari='aria2c'
 alias pari='aria2c --http-proxy="http://127.0.0.1:9080"'
 alias pcurl='curl -x socks5h://localhost:9050'
 alias twitch='mpv --ytdl=yes --ytdl-format=360p'
+alias pmpv='http_proxy=http://127.0.0.1:9080 mpv'
+#alias pmpv+='http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=480p-2000k'
+alias bat='batcat'
 
 #my functions
 primit () { for i in *.jpg; do echo $i; primitive -i $i -o p-$i."$1" -n "$2" -m "$3"; done; }
@@ -120,8 +125,12 @@ ffvid () { cat *.jpg | ffmpeg -framerate "$1" -f image2pipe -i - -codec copy "$2
 ffvil () { cat *.jpg | ffmpeg -framerate "$1" -f image2pipe -i - "$2"; }
 ffpri () { cat p-*.jpg | ffmpeg -framerate "$1" -f image2pipe -i - "$2"; }
 ffgmi () { cat g-*.jpg | ffmpeg -framerate "$1" -f image2pipe -i - "$2"; }
+
+pmpv+ () { http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format="$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format="$@"; done ;}
+
 audi () { youtube-dl "$@" -f 140; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 140; done; }
 vide () { youtube-dl "$@" -f 18; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 18; done; }
+yout () { youtube-dl "$@"; while [ $? -ne 0 ]; do torip ; youtube-dl "$@"; done; }
 vihd () { youtube-dl "$@" -f bestvideo[ext=mp4]+140; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f bestvideo[ext=mp4]+140; done; }
 mama () { youtube-dl "$@" -f 160+140 -k; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 160+140 -k; done; }
 stream () { streamlink --player-passthrough hls "$@";}
