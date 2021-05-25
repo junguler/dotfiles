@@ -138,6 +138,7 @@ streamp () { streamlink --https-proxy "socks5h://127.0.0.1:9050" "$@"; while [ $
 streamr () { streamlink -o "output.ts" --https-proxy "socks5h://127.0.0.1:9050" "$@"; while [ $? -ne 0 ] ; do torip ; streamlink -o "output.ts" --https-proxy "socks5h://127.0.0.1:9050" "$@"; done ;}
 streamr2 () { streamlink --https-proxy "socks5h://127.0.0.1:9050" -O "$0" | tee recording.ts | mpv - ;}
 vimpv () { http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=18 "$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=18 "$@"; done ;}
+mampv () { http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=160+140 "$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=160+140 "$@"; done ;}
 aumpv () { http_proxy=http://127.0.0.1:9080 mpv --no-video --autofit-larger=358x202 "$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --no-video --autofit-larger=358x202 "$@"; done ;}
 fflis () { for f in ./*."$1"; do echo "file '$f'" >> mylist.txt; done; }
 ffmer () { ffmpeg -f concat -safe 0 -i mylist.txt -c copy output."$1"; rm mylist.txt; }
