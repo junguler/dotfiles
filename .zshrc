@@ -108,11 +108,13 @@ alias ls='ls -a --color=auto'
 alias notor='youtube-dl --proxy ""'
 alias ari='aria2c'
 alias pari='aria2c --http-proxy="http://127.0.0.1:9080"'
+alias fari='aria2c --http-proxy="http://127.0.0.1:8580"'
 alias pcurl='curl -x socks5h://localhost:9050'
-alias twitch='mpv --ytdl=yes --ytdl-format=360p'
+alias twitch='mpv --ytdl-format=360p'
 alias pmpv='http_proxy=http://127.0.0.1:9080 mpv'
-#alias pmpv+='http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=480p-2000k'
+#alias pmpv+='http_proxy=http://127.0.0.1:9080 mpv --ytdl-format=480p-2000k'
 alias bat='batcat'
+alias radio='mpv --vf-add=hue=H="0.1*PI*t" '
 
 #my functions
 primit () { for i in *.jpg; do echo $i; primitive -i $i -o p-$i."$1" -n "$2" -m "$3"; done; }
@@ -126,23 +128,34 @@ ffvil () { cat *.jpg | ffmpeg -framerate "$1" -f image2pipe -i - "$2"; }
 ffpri () { cat p-*.jpg | ffmpeg -framerate "$1" -f image2pipe -i - "$2"; }
 ffgmi () { cat g-*.jpg | ffmpeg -framerate "$1" -f image2pipe -i - "$2"; }
 
-pmpv+ () { http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format="$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format="$@"; done ;}
+pmpv+ () { http_proxy=http://127.0.0.1:9080 mpv --ytdl-format="$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl-format="$@"; done ;}
 
 audi () { youtube-dl "$@" -f 140; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 140; done; }
 vide () { youtube-dl "$@" -f 18; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 18; done; }
 yout () { youtube-dl "$@"; while [ $? -ne 0 ]; do torip ; youtube-dl "$@"; done; }
 vihd () { youtube-dl "$@" -f bestvideo[ext=mp4]+140; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f bestvideo[ext=mp4]+140; done; }
 mama () { youtube-dl "$@" -f 160+140 -k; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 160+140 -k; done; }
-stream () { streamlink --player-passthrough hls "$@";}
-streamp () { streamlink --https-proxy "socks5h://127.0.0.1:9050" "$@"; while [ $? -ne 0 ] ; do torip ; streamlink --https-proxy "socks5h://127.0.0.1:9050" "$@"; done ;}
-streamr () { streamlink -o "output.ts" --https-proxy "socks5h://127.0.0.1:9050" "$@"; while [ $? -ne 0 ] ; do torip ; streamlink -o "output.ts" --https-proxy "socks5h://127.0.0.1:9050" "$@"; done ;}
-streamr2 () { streamlink --https-proxy "socks5h://127.0.0.1:9050" -O "$0" | tee recording.ts | mpv - ;}
-vimpv () { http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=18 "$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=18 "$@"; done ;}
-mampv () { http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=160+140 "$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl=yes --ytdl-format=160+140 "$@"; done ;}
+#stream () { streamlink --player-passthrough hls "$@";}
+#streamp () { streamlink --https-proxy "socks5h://127.0.0.1:9050" "$@"; while [ $? -ne 0 ] ; do torip ; streamlink --https-proxy "socks5h://127.0.0.1:9050" "$@"; done ;}
+#streamr () { streamlink -o "output.ts" --https-proxy "socks5h://127.0.0.1:9050" "$@"; while [ $? -ne 0 ] ; do torip ; streamlink -o "output.ts" --https-proxy "socks5h://127.0.0.1:9050" "$@"; done ;}
+#streamr2 () { streamlink --https-proxy "socks5h://127.0.0.1:9050" -O "$0" | tee recording.ts | mpv - ;}
+vimpv () { http_proxy=http://127.0.0.1:9080 mpv --ytdl-format=18 "$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl-format=18 "$@"; done ;}
+mampv () { http_proxy=http://127.0.0.1:9080 mpv --ytdl-format=160+140 "$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl-format=160+140 "$@"; done ;}
 aumpv () { http_proxy=http://127.0.0.1:9080 mpv --no-video --autofit-larger=358x202 "$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --no-video --autofit-larger=358x202 "$@"; done ;}
 fflis () { for f in ./*."$1"; do echo "file '$f'" >> mylist.txt; done; }
 ffmer () { ffmpeg -f concat -safe 0 -i mylist.txt -c copy output."$1"; rm mylist.txt; }
 #pcurl () { curl -x socks5h://localhost:9050 "$@" ; while [ $? -ne 0 ] ; do torip ; curl -x socks5h://localhost:9050 "$@" ; done ;}
+
+fimpv () { http_proxy=http://127.0.0.1:8581 mpv --ytdl-format=18 "$@"; while [ $? -ne 0 ] ; do http_proxy=http://127.0.0.1:8580 mpv --ytdl-format=18 "$@" ; done ; }
+fampv () { http_proxy=http://127.0.0.1:8581 mpv --ytdl-format=160+140 "$@"; while [ $? -ne 0 ] ; do http_proxy=http://127.0.0.1:8580 mpv --ytdl-format=160+140 "$@" ; done ; }
+fmpv+ () { http_proxy=http://127.0.0.1:8581 mpv --ytdl-format="$@"; while [ $? -ne 0 ] ; do http_proxy=http://127.0.0.1:8580 mpv --ytdl-format="$@" ; done ; }
+fmpv () { http_proxy=http://127.0.0.1:8581 mpv "$@"; while [ $? -ne 0 ] ; do http_proxy=http://127.0.0.1:8581 mpv "$@" ; done ; }
+fudi () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@" -f 140; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" -f 140; done; }
+fide () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@" -f 18; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" -f 18; done; }
+fout () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@"; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" ; done; }
+fihd () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@" -f bestvideo[ext=mp4]+140; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" -f bestvideo[ext=mp4]+140; done; }
+fama () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@" -f 160+140 -k; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" -f 160+140 -k; done; }
+
 toon () { curl \
 	-F 'image=@'$@''\
 	-H 'api-key:83046935-b6e8-4a27-94fe-f639162ea4df'\
