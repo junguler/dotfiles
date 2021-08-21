@@ -2,16 +2,17 @@ local wezterm = require 'wezterm';
 return {
   default_prog = {"/bin/zsh", "-l"},
   font_size = 11.0,
-  line_height = 0.9,
+  line_height = 0.8, -- 0.9
   bold_brightens_ansi_colors = false,
   check_for_updates = false,
   show_update_window = false,
   pane_focus_follows_mouse = true,
   window_close_confirmation = "NeverPrompt",
-  -- disable_default_key_bindings = true,
-  -- disable_default_mouse_bindings = true,
+  disable_default_key_bindings = true,
+  disable_default_mouse_bindings = true,
   hide_tab_bar_if_only_one_tab = true,
-  default_cursor_style = "SteadyBar",
+  default_cursor_style = "BlinkingBar", -- "SteadyBar"
+  cursor_blink_rate = 600,
   color_scheme = "MaterialDarker", -- "SpaceGray Eighties"
   window_padding = {
     left = 6,
@@ -34,7 +35,8 @@ return {
     {
       italic = false,
       bold = false,
-      font = wezterm.font("Cascadia Mono PL"),
+      intensity = "Normal",
+      font = wezterm.font("Cascadia Mono PL", {bold=false}),
       -- font = wezterm.font("Hack"),
     }
   },
