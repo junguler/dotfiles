@@ -10,7 +10,7 @@ return {
   window_close_confirmation = "NeverPrompt",
   disable_default_key_bindings = true,
   disable_default_mouse_bindings = true,
-  hide_tab_bar_if_only_one_tab = true,
+  -- hide_tab_bar_if_only_one_tab = true,
   default_cursor_style = "BlinkingBar", -- "SteadyBar"
   cursor_blink_rate = 600,
   color_scheme = "MaterialDarker", -- "SpaceGray Eighties"
@@ -21,12 +21,17 @@ return {
   colors = {
       foreground = "#B9B9B9",
       background = "#1E1E1E",
+    tab_bar = {
+      background = "#212121",
+      },
     },
   keys = {
     {key="v", mods="ALT",
       action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
     {key="h", mods="ALT",
       action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
+    {key="t", mods="ALT",
+      action=wezterm.action{SpawnTab="CurrentPaneDomain"}},
     {key="w", mods="ALT",
      action=wezterm.action{CloseCurrentPane={confirm=false}}},
     {key="v", mods="CTRL", action="Paste"},
