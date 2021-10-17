@@ -74,7 +74,7 @@ export ZSH="/home/junguler/.oh-my-zsh"
 
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
-PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M:%S} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33}%f 0ms %F{177}%F{127} %f%k"; else echo "  %D{%H:%M:%S}  $(shrink_path -f)  "; fi) '
+PROMPT='%K{237}%F{226} %F{214}%f %D{%I:%M} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33}%F{177}%F{127} %f%k '
 
 # function for showing elapsed time in PROMPT
 function preexec() {
@@ -90,14 +90,14 @@ function precmd() {
     local s=$((d_s % 60))
     local m=$(((d_s / 60) % 60))
     local h=$((d_s / 3600))
-    if ((h > 0)); then elapsed=${h}h${m}m
-    elif ((m > 0)); then elapsed=${m}m${s}s
+    if ((h > 0)); then elapsed=(${h}h ${m}m)
+    elif ((m > 0)); then elapsed=(${m}m ${s}s)
     elif ((s >= 10)); then elapsed=${s}.$((ms / 100))s
     elif ((s > 0)); then elapsed=${s}.$((ms / 10))s
     else elapsed=${ms}ms
     fi
 
-	PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M:%S} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33} %f${elapsed} %F{177}%F{127} %f%k "; else echo "  %D{%H:%M:%S}  $(shrink_path -f)  ${elapsed}   "; fi)'
+	PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33} %f${elapsed} %F{177}%F{127} %f%k "; else echo "  %D{%H:%M}  $(shrink_path -f)  ${elapsed}   "; fi)'
     unset timer
   fi
 }
@@ -105,7 +105,8 @@ function precmd() {
 
 # my aliases
 alias ls='ls -a --color=auto'
-alias notor='youtube-dl --proxy ""'
+alias notor='yt-dlp --proxy ""'
+alias odys='yt-dlp --proxy "" -f hls-316'
 alias ari='aria2c'
 alias pari='aria2c --http-proxy="http://127.0.0.1:9080"'
 alias fari='aria2c --http-proxy="http://127.0.0.1:8580"'
@@ -132,11 +133,11 @@ geometrize+ () { for i in *.png; do echo $i; geometrize_g++ -i $i -o g-$i."$1" -
 
 pmpv+ () { http_proxy=http://127.0.0.1:9080 mpv --ytdl-format="$@"; while [ $? -ne 0 ] ; do torip ; http_proxy=http://127.0.0.1:9080 mpv --ytdl-format="$@"; done ;}
 
-audi () { youtube-dl "$@" -f 140; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 140; done; }
-vide () { youtube-dl "$@" -f 18; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 18; done; }
-yout () { youtube-dl "$@"; while [ $? -ne 0 ]; do torip ; youtube-dl "$@"; done; }
-vihd () { youtube-dl "$@" -f bestvideo[ext=mp4]+140; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f bestvideo[ext=mp4]+140; done; }
-mama () { youtube-dl "$@" -f 160+140 -k; while [ $? -ne 0 ]; do torip ; youtube-dl "$@" -f 160+140 -k; done; }
+audi () { yt-dlp "$@" -f 140; while [ $? -ne 0 ]; do torip ; yt-dlp "$@" -f 140; done; }
+vide () { yt-dlp "$@" -f 18; while [ $? -ne 0 ]; do torip ; yt-dlp "$@" -f 18; done; }
+yout () { yt-dlp "$@"; while [ $? -ne 0 ]; do torip ; yt-dlp "$@"; done; }
+vihd () { yt-dlp "$@" -f bestvideo[ext=mp4]+140; while [ $? -ne 0 ]; do torip ; yt-dlp "$@" -f bestvideo[ext=mp4]+140; done; }
+mama () { yt-dlp "$@" -f 160+140 -k; while [ $? -ne 0 ]; do torip ; yt-dlp "$@" -f 160+140 -k; done; }
 #stream () { streamlink --player-passthrough hls "$@";}
 #streamp () { streamlink --https-proxy "socks5h://127.0.0.1:9050" "$@"; while [ $? -ne 0 ] ; do torip ; streamlink --https-proxy "socks5h://127.0.0.1:9050" "$@"; done ;}
 #streamr () { streamlink -o "output.ts" --https-proxy "socks5h://127.0.0.1:9050" "$@"; while [ $? -ne 0 ] ; do torip ; streamlink -o "output.ts" --https-proxy "socks5h://127.0.0.1:9050" "$@"; done ;}
@@ -152,11 +153,11 @@ fimpv () { http_proxy=http://127.0.0.1:8581 mpv --ytdl-format=18 "$@"; while [ $
 fampv () { http_proxy=http://127.0.0.1:8581 mpv --ytdl-format=160+140 "$@"; while [ $? -ne 0 ] ; do http_proxy=http://127.0.0.1:8580 mpv --ytdl-format=160+140 "$@" ; done ; }
 fmpv+ () { http_proxy=http://127.0.0.1:8581 mpv --ytdl-format="$@"; while [ $? -ne 0 ] ; do http_proxy=http://127.0.0.1:8580 mpv --ytdl-format="$@" ; done ; }
 fmpv () { http_proxy=http://127.0.0.1:8581 mpv "$@"; while [ $? -ne 0 ] ; do http_proxy=http://127.0.0.1:8581 mpv "$@" ; done ; }
-fudi () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@" -f 140; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" -f 140; done; }
-fide () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@" -f 18; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" -f 18; done; }
-fout () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@"; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" ; done; }
-fihd () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@" -f bestvideo[ext=mp4]+140; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" -f bestvideo[ext=mp4]+140; done; }
-fama () { youtube-dl --proxy HTTPS://127.0.0.1:8581/ "$@" -f 160+140 -k; while [ $? -ne 0 ] ; do youtube-dl --proxy HTTPS://127.0.0.1:8580/ "$@" -f 160+140 -k; done; }
+fudi () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f 140; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" -f 140; done; }
+fide () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f 18; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" -f 18; done; }
+fout () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@"; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" ; done; }
+fihd () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f bestvideo[ext=mp4]+140; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" -f bestvideo[ext=mp4]+140; done; }
+fama () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f 160+140 -k; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" -f 160+140 -k; done; }
 
 toon () { curl \
 	-F 'image=@'$@''\
