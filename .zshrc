@@ -74,7 +74,8 @@ export ZSH="/home/junguler/.oh-my-zsh"
 
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
-PROMPT='%K{237}%F{226} %F{214}%f %D{%I:%M} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33}%F{177}%F{127} %f%k '
+PROMPT='%K{239}%F{226}█%F{214}█%f %D{%I:%M} %F{154}█%F{34}█%f $(shrink_path -f) %F{45}█%F{33}█%F{177}█%k%F{127}█ %f'
+#PROMPT='%K{237}%F{226} %F{214}%f %D{%I:%M} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33}%F{177}%F{127} %f%k '
 
 # function for showing elapsed time in PROMPT
 function preexec() {
@@ -97,7 +98,8 @@ function precmd() {
     else elapsed=${ms}ms
     fi
 
-	PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33} %f${elapsed} %F{177}%F{127} %f%k "; else echo "  %D{%H:%M}  $(shrink_path -f)  ${elapsed}   "; fi)'
+	#PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{237} %F{214}%f %D{%I:%M} %F{154}%F{34}%f $(shrink_path -f) %F{45}%F{33} %f${elapsed} %F{177}%F{127} %f%k "; else echo "  %D{%H:%M}  $(shrink_path -f)  ${elapsed}   "; fi)'
+	PROMPT='$(if [[ $? == 0 ]]; then echo "%F{226}%K{239}█%F{214}█%f %D{%I:%M} %F{154}█%F{34}█%f $(shrink_path -f) %F{45}█%F{33}█ %f${elapsed} %F{177}█%k%F{127}█ %f"; else echo "██ %D{%H:%M} ██ $(shrink_path -f) ██ ${elapsed} ██ "; fi)'
     unset timer
   fi
 }
@@ -115,6 +117,7 @@ alias twitch='mpv --ytdl-format=360p'
 alias pmpv='http_proxy=http://127.0.0.1:9080 mpv'
 #alias pmpv+='http_proxy=http://127.0.0.1:9080 mpv --ytdl-format=480p-2000k'
 alias bat='batcat'
+alias ani-cli='~/Music/ani-cli/ani-cli'
 #alias radio='mpv --vf-add=hue=H="0.1*PI*t" '
 
 #my functions
@@ -158,6 +161,11 @@ fide () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f 18; while [ $? -ne 0 ] 
 fout () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@"; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" ; done; }
 fihd () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f bestvideo[ext=mp4]+140; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" -f bestvideo[ext=mp4]+140; done; }
 fama () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f 160+140 -k; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" -f 160+140 -k; done; }
+
+pg_dl () { lynx --dump "$1" | awk '/http/{print $2}' | grep -E ".$2" | aria2c -i -; }
+pg_dl+ () { lynx --dump "$1" | awk '/http/{print $2}' | grep -E "(."$2"|."$3")" | aria2c -i -; }
+pg_dl_r () { lynx --dump "$1" | awk '/http/{print $2}' | grep -E ".$2" | grep -v "$3" | aria2c -i -; }
+pg_dl_r2 () { lynx --dump "$1" | awk '/http/{print $2}' | grep -E ".$2" | grep -v "$3" | grep -v "$4" | aria2c -i -; }
 
 toon () { curl \
 	-F 'image=@'$@''\
@@ -214,6 +222,10 @@ export PATH=~/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
+
+HISTSIZE=10000000
+SAVEHIST=10000000
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -239,3 +251,4 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
