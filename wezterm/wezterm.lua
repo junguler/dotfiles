@@ -19,15 +19,16 @@ return {
     right = 6,
   },
   colors = {
-      foreground = "#B9B9B9",
+      foreground = "#868686",
       background = "#1E1E1E",
     tab_bar = {
       background = "#212121",
       },
     },
   inactive_pane_hsb = {
-      saturation = 0.6,
-      brightness = 0.6,
+      -- hue = 0.7,
+      saturation = 0.7,
+      brightness = 0.7,
   },
   keys = {
     {key="v", mods="ALT",

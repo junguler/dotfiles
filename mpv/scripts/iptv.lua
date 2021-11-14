@@ -1,6 +1,6 @@
 --redefine keybindings here if needed; multiple bindings are possible
 keybinds = {
-            activate = {'\\', 'MOUSE_BTN2'},
+            activate = {'/'},
             plsup = {'UP', 'MOUSE_BTN3'},
             plsdown = {'DOWN', 'MOUSE_BTN4'},
             plsenter = {'ENTER', 'MOUSE_BTN0'}

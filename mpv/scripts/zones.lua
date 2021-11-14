@@ -32,7 +32,7 @@ local _show_zones_info_by_default = false;
 local _zones_key = "Ctrl+Alt+Z"
 
 -- local ZONE_THRESH_PERCENTAGE = 20;
-local ZONE_THRESH_PERCENTAGE = 33;
+local ZONE_THRESH_PERCENTAGE = 10;
 -- -- sides get 20% each, mid gets 60%, same vertically
 local VERT = {'top', 'middle', 'bottom'}
 local HORZ = {'left', 'middle', 'right'}

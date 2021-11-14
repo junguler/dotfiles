@@ -108,7 +108,7 @@ function precmd() {
 # my aliases
 alias ls='ls -a --color=auto'
 alias notor='yt-dlp --proxy ""'
-alias odys='yt-dlp --proxy "" -f hls-316'
+alias odys='yt-dlp --proxy "" -f worst'
 alias ari='aria2c'
 alias pari='aria2c --http-proxy="http://127.0.0.1:9080"'
 alias fari='aria2c --http-proxy="http://127.0.0.1:8580"'
@@ -119,6 +119,10 @@ alias pmpv='http_proxy=http://127.0.0.1:9080 mpv'
 alias bat='batcat'
 alias ani-cli='~/Music/ani-cli/ani-cli'
 #alias radio='mpv --vf-add=hue=H="0.1*PI*t" '
+alias lynx_d='lynx --dump --listonly --nonumbers'
+alias dash_mpv='-o - | mpv -'
+
+notor+ () { yt-dlp --proxy "" -f worst "$@" -o - | mpv - ; }
 
 #my functions
 primit () { for i in *.jpg; do echo $i; primitive -i $i -o p-$i."$1" -n "$2" -m "$3"; done; }
@@ -163,20 +167,11 @@ fihd () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f bestvideo[ext=mp4]+140;
 fama () { yt-dlp --proxy HTTPS://127.0.0.1:8581/ "$@" -f 160+140 -k; while [ $? -ne 0 ] ; do yt-dlp --proxy HTTPS://127.0.0.1:8580/ "$@" -f 160+140 -k; done; }
 
 pg_dl () { lynx --dump "$1" | awk '/http/{print $2}' | grep -E ".$2" | aria2c -i -; }
+pg_dl2 () { lynx --dump --listonly --nonumbers "$1" | grep -E ".$2" | aria2c -i -; }
+pg_dl2+ () { lynx --dump --listonly --nonumbers "$1" | grep -E ".$2" | grep -E "$3" | aria2c -i -; }
 pg_dl+ () { lynx --dump "$1" | awk '/http/{print $2}' | grep -E "(."$2"|."$3")" | aria2c -i -; }
 pg_dl_r () { lynx --dump "$1" | awk '/http/{print $2}' | grep -E ".$2" | grep -v "$3" | aria2c -i -; }
 pg_dl_r2 () { lynx --dump "$1" | awk '/http/{print $2}' | grep -E ".$2" | grep -v "$3" | grep -v "$4" | aria2c -i -; }
-
-toon () { curl \
-	-F 'image=@'$@''\
-	-H 'api-key:83046935-b6e8-4a27-94fe-f639162ea4df'\
-	https://api.deepai.org/api/toonify ; }
-# api-key:quickstart-QUdJIGlzIGNvbWluZy4uLi4K'
-toow () { curl \
-	-F 'image='$@''\
-	-H 'api-key:83046935-b6e8-4a27-94fe-f639162ea4df'\
-	https://api.deepai.org/api/toonify ; }
-
 
 # %F{11}%F{3}%F{10}%F{2}%F{14}%F{6}%F{12}%F{4}%F{13}%F{5}%F{9}%F{1}
 
@@ -200,9 +195,9 @@ setopt NO_BEEP AUTO_LIST HIST_IGNORE_ALL_DUPS globdots #MENU_COMPLETE
 bindkey -e
 # control+u to remove the whole line behind cursor
 bindkey \^U backward-kill-line
-# control+o to remove a word before behind cursor
+# control+o to remove a word before cursor
 bindkey \^O backward-kill-word
-# control+p to remove a word after behind cursor
+# control+p to remove a word after cursor
 bindkey \^P kill-word
 
 source ~/.oh-my-zsh/custom/plugins/completion.zsh

@@ -140,8 +140,8 @@ local function get_visualizer(name, quality)
     local w, h, fps
 
     if quality == "verylow" then
-        w = 296
-        fps = 30
+        w = 376
+        fps = 60
     elseif quality == "low" then
         w = 960
         fps = 30
@@ -159,7 +159,8 @@ local function get_visualizer(name, quality)
         return ""
     end
 
-    h = w * opts.height / 16
+    -- h = w * opts.height / 16
+    h = 210
 
     if name == "showcqt" then
         local count = math.ceil(w * 180 / 1920 / fps)
@@ -252,7 +253,7 @@ local function get_visualizer(name, quality)
             "showwaves          =" ..
                 "size           =" .. w .. "x" .. h .. ":" ..
                 "r              =" .. fps .. ":" ..
-                "mode           = p2p," ..
+                "mode           = line," ..
             "format             = rgb0 [vo]"
     elseif name == "off" then
         return "[aid1] afifo [ao]"
