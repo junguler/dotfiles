@@ -3,5 +3,14 @@
 }
 
 * {
-border-radius: 0% !important;
+border-radius: 0px !important;
+}
+
+.search-one-offs {
+display: none !important;
+}
+
+.urlbarView-row-inner {
+padding-inline: var(--urlbarView-item-inline-padding);
+padding-block: 2px !important;
 }
