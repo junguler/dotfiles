@@ -12,11 +12,10 @@ color: rgb(221, 221, 221) !important; /* text color */
 opacity: 90% !important; /* make everything on the page 90% brightness */
 }
 
-:root { scrollbar-color: rgb(255, 105, 180) rgba(0, 0, 0) !important; }
-
 * {
+scrollbar-color: rgb(255, 105, 180) rgba(0, 0, 0) !important;
 scrollbar-width: thin !important;
-border-radius: 0% !important;
+border-radius: 0px !important;
 }
 
 p {
@@ -24,9 +23,7 @@ color: rgb(221, 221, 221) !important; /* text color */
 }
 
 span {
-background-color: rgba(216, 216, 216, 0.1) !important;
-/* mix-blend-mode: exclusion !important; */
-/* background-blend-mode: exclusion !important; */
+background-color: rgb(54, 54, 54) !important;
 }
 
 b, em, i, u, em, small {
@@ -161,3 +158,21 @@ window, page, html, .main-content, scrollbar {
 scrollbar-color: rgb(255, 105, 180) rgb(0, 0, 0) !important;
 scrollbar-width: thin !important; }
 }
+
+/*
+@-moz-document url-prefix("about:") {
+:root {
+--in-content-page-background: YOUR_COLOR_HERE!important;
+}
+}
+
+@-moz-document url(about:newtab), url(about:home) { 
+  .outer-wrapper {
+  /*background-color: black !important; /* Background color */
+    /*background-image: url(image.jpg) !important; /* Image in chrome folder */
+    /*background-size: cover !important;
+    background-attachment: fixed !important;
+    color: grey !important; /* Text color */
+  /*}
+}
+*/
