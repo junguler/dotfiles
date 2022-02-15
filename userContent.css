@@ -4,6 +4,13 @@ background: rgba(34, 34, 34, 0.1) !important;
 background-image: linear-gradient(rgba(34, 34, 34, 0.1),rgba(34, 34, 34, 0.1)) !important;  
 } */
 
+/*
+#2e3440  #3b4252  #434c5e  #4c566a
+#d8dee9  #e5e9f0  #eceff4
+#8fbcbb  #88c0d0  #81a1c1  #5e81ac
+#bf616a  #d08770  #a3be8c  #ebcb8b  #b48ead  
+*/
+
 body {
 background-color: rgb(34, 34, 34) !important; /* background color */
 background: rgb(34, 34, 34) !important; /* background color */
@@ -13,7 +20,7 @@ opacity: 90% !important; /* make everything on the page 90% brightness */
 }
 
 * {
-scrollbar-color: rgb(255, 105, 180) rgba(0, 0, 0) !important;
+scrollbar-color: rgb(255, 105, 180) #333 !important;
 scrollbar-width: thin !important;
 border-radius: 0px !important;
 }
@@ -97,6 +104,9 @@ color: rgb(255, 217, 0) !important; /* color for text on buttons */
 a:link {
 color: rgb(238, 238, 238) !important; /* color for unvisited links */
 border-bottom: rgb(255, 217, 0) 1px solid !important; /* add underline to all clickable links */
+/*border-bottom: 1px solid !important;
+border-image: linear-gradient(to right, cyan, magenta) !important;
+border-image-slice: 1 !important; */
 }
 
 a:visited {
@@ -158,6 +168,23 @@ window, page, html, .main-content, scrollbar {
 scrollbar-color: rgb(255, 105, 180) rgb(0, 0, 0) !important;
 scrollbar-width: thin !important; }
 }
+
+@-moz-document url-prefix("http://127.0.0.1:"), url-prefix("file://"), url-prefix("moz-extension:") {
+span { background-color: rgb(46, 46, 46) !important; }
+a:link { border-bottom: rgba(255, 217, 0, 0.5) 1px solid !important; }
+a:hover { color: rgb(144, 238, 144) !important ; filter: hue-rotate(180deg) !important; }
+i { opacity: 80% !important; }
+title { color: #00000000 !important; }
+}
+
+/* @-moz-document url-prefix("http://127.0.0.1:") {
+* { border-radius: unset !important;}
+a:link, a:active, a:visited { 
+border-bottom: rgb(238, 238, 238) 1px solid !important;
+color: rgb(238, 238, 238) !important;}
+a:hover {color: rgb(255, 166, 0) !important;
+border-bottom: rgb(255, 166, 0) 1px solid !important;}
+} */
 
 /*
 @-moz-document url-prefix("about:") {
