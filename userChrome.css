@@ -11,6 +11,10 @@ display: none !important;
 }
 
 .urlbarView-row-inner {
-padding-inline: var(--urlbarView-item-inline-padding);
+padding-inline: var(--urlbarView-item-inline-padding) !important;
 padding-block: 2px !important;
+}
+
+.titlebar-spacer[type="pre-tabs"] {
+display: none !important;
 }
