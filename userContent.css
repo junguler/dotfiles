@@ -20,7 +20,7 @@ opacity: 90% !important; /* make everything on the page 90% brightness */
 }
 
 * {
-scrollbar-color: rgb(255, 105, 180) #333 !important;
+scrollbar-color: rgb(151, 162, 255) rgb(64, 64, 64) !important;
 scrollbar-width: thin !important;
 border-radius: 0px !important;
 }
@@ -136,6 +136,11 @@ img, img:hover {
 filter: unset !important;}
 }
 
+@-moz-document domain("irancell.ir") {
+.gauge-value-text, .gauge-label-text {
+fill: #ccc !important;}
+}
+
 @-moz-document domain("github.com") {
 .user-status-circle-badge-container {
 bottom: -30px !important;}
@@ -175,6 +180,7 @@ a:link { border-bottom: rgba(255, 217, 0, 0.5) 1px solid !important; }
 a:hover { color: rgb(144, 238, 144) !important ; filter: hue-rotate(180deg) !important; }
 i { opacity: 80% !important; }
 title { color: #00000000 !important; }
+/* span2 div form { opacity: 60% !important; } */
 }
 
 /* @-moz-document url-prefix("http://127.0.0.1:") {
