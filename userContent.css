@@ -136,6 +136,11 @@ img, img:hover {
 filter: unset !important;}
 }
 
+@-moz-document domain("bmi.ir") {
+img, img:hover {
+filter: brightness(40%) !important;}
+}
+
 @-moz-document domain("irancell.ir") {
 .gauge-value-text, .gauge-label-text {
 fill: #ccc !important;}
