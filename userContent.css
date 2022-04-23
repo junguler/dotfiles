@@ -153,6 +153,16 @@ bottom: -30px !important;}
 padding: 0px !important;}
 }
 
+@-moz-document domain("junguler.github.io") {
+a {color: #ccc !important;
+border: 1px solid #666 !important;
+padding-left: 15px !important; }
+}
+
+@-moz-document domain("time.ir") {
+#analogClock, .headerTop {filter: invert(100%) hue-rotate(180deg); hue-rotate(180deg);}
+}
+
 @-moz-document url-prefix("about:") {
 html, body, div {
 /* *:not(.checkbox-check, input, button, [class*='button-']) { */
@@ -179,13 +189,16 @@ scrollbar-color: rgb(255, 105, 180) rgb(0, 0, 0) !important;
 scrollbar-width: thin !important; }
 }
 
+ 
 @-moz-document url-prefix("http://127.0.0.1:"), url-prefix("file://"), url-prefix("moz-extension:") {
 span { background-color: rgb(46, 46, 46) !important; }
 a:link { border-bottom: rgba(255, 217, 0, 0.5) 1px solid !important; }
 a:hover { color: rgb(144, 238, 144) !important ; filter: hue-rotate(180deg) !important; }
+a { background-color: rgb(46, 46, 46) !important};
 i { opacity: 80% !important; }
-title { color: #00000000 !important; }
-/* span2 div form { opacity: 60% !important; } */
+/* title { color: #00000000 !important; }
+* { border-radius: 15px !important; } */
+/* span2 div form { opacity: 60% !important; } */ 
 }
 
 /* @-moz-document url-prefix("http://127.0.0.1:") {
